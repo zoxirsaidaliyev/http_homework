@@ -1,9 +1,7 @@
 class Model {
-  final List<Results> result;
-  final Name name;
+  final List<Results> results;
   Model({
-    required this.result,
-    required this.name,
+    required this.results,
   });
   factory Model.fromJson(Map<String, dynamic> json) {
     List<Results> data = [];
@@ -11,22 +9,24 @@ class Model {
       data.add(Results.fromJson(element));
     });
     return Model(
-      result: List.from(data),
-      name: Name.fromJson(json['name']),
+      results: List.from(data),
     );
   }
 }
 
 class Results {
+  final String gender;
   final String email;
   final String phone;
   final Name name;
   final Picture picture;
+
   Results({
     required this.email,
     required this.name,
     required this.phone,
     required this.picture,
+    required this.gender,
   });
   factory Results.fromJson(Map<String, dynamic> json) {
     return Results(
@@ -34,6 +34,7 @@ class Results {
       name: Name.fromJson(json['name']),
       phone: json['phone'],
       picture: Picture.fromJson(json['picture']),
+      gender: json['gender'],
     );
   }
 }
